@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Reviews - Steady Moving Services</title>
+    <meta name="description" content="Read 5-star reviews from our satisfied clients. Discover why Steady Moving Services is the trusted choice for moving in Los Angeles.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Additional styles for reviews page */
+        .testimonial-card {
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-btn {
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+            color: var(--primary-black);
+        }
+        
+        .review-date {
+            color: var(--dark-gray);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        .review-source {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        
+        .review-source i {
+            margin-right: 0.5rem;
+            color: var(--primary-yellow);
+        }
+        
+        .review-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--medium-gray);
+            margin: 0 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background-color: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+            color: var(--primary-black);
+        }
+        
+        .review-stats {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .rating-overview {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .average-rating {
+            text-align: center;
+        }
+        
+        .average-rating .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-black);
+            line-height: 1;
+        }
+        
+        .average-rating .stars {
+            color: var(--primary-yellow);
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .average-rating .total {
+            color: var(--dark-gray);
+        }
+        
+        .rating-bars {
+            flex: 1;
+            max-width: 400px;
+            margin-left: 2rem;
+        }
+        
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rating-bar .label {
+            min-width: 60px;
+        }
+        
+        .rating-bar .bar {
+            flex: 1;
+            height: 8px;
+            background-color: var(--medium-gray);
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+        
+        .rating-bar .bar-fill {
+            height: 100%;
+            background-color: var(--primary-yellow);
+        }
+        
+        .rating-bar .count {
+            min-width: 40px;
+            text-align: right;
+            color: var(--dark-gray);
+        }
+        
+        .write-review-btn {
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .rating-overview {
+                flex-direction: column;
+            }
+            
+            .rating-bars {
+                margin-left: 0;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Steady Moving Services Logo">
+                <div class="logo-text">Steady <span>Moving</span></div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="reviews.html" class="active">Reviews</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Reviews Hero Section -->
+    <section class="hero" style="background-image: url('images/clients/client1.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Client <span>Reviews</span></h1>
+            <p>See what our satisfied customers have to say about our moving services</p>
+        </div>
+    </section>
+
+    <!-- Reviews Overview -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Satisfaction Is Our Priority</h2>
+            </div>
+            
+            <div class="review-stats">
+                <div class="rating-overview">
+                    <div class="average-rating">
+                        <div class="number">4.9</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="total">Based on 127 reviews</div>
+                    </div>
+                    
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <div class="label">5 Stars</div>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 85%;"></div>
+                            </div>
+                            <div class="count">108</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="label">4 Stars</div>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 12%;"></div>
+                            </div>
+                            <div class="count">15</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="label">3 Stars</div>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 3%;"></div>
+                            </div>
+                            <div class="count">4</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="label">2 Stars</div>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
+                            <div class="count">0</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div class="label">1 Star</div>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
+                            <div class="count">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="booking.html" class="btn btn-primary write-review-btn">Write a Review</a>
+                </div>
+            </div>
+            
+            <div class="testimonial-filters">
+                <button class="filter-btn active">All Reviews</button>
+                <button class="filter-btn">Local Moving</button>
+                <button class="filter-btn">Long Distance</button>
+                <button class="filter-btn">Packing Services</button>
+                <button class="filter-btn">5 Star Only</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-container">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Steady Moving Services exceeded all my expectations! The team arrived on time and worked efficiently throughout the day. They were incredibly careful with my furniture and fragile items, using proper padding and securing everything in the truck. Not a single item was damaged during the move. Their pricing was transparent with no hidden fees, and they even finished earlier than estimated. I've already recommended them to several friends!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/clients/client1.jpg" alt="Sarah Johnson">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Los Angeles, CA</p>
+                            <div class="review-date">June 2, 2025</div>
+                            <div class="review-source">
+                                <i class="fab fa-google"></i> Google Reviews
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"I was dreading my cross-country move from LA to New York, but Steady Moving Services made it surprisingly stress-free. Their team helped with everything from packing to transportation, and they kept me updated throughout the entire process. My belongings arrived exactly when they said they would, and everything was in perfect condition. The care they took with my items was impressive, especially with my antique furniture. Their long-distance moving service is worth every penny!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/clients/client2.jpg" alt="Michael Rodriguez">
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Formerly of Santa Monica, CA</p>
+                            <div class="review-date">May 28, 2025</div>
+                            <div class="review-source">
+                                <i class="fab fa-yelp"></i> Yelp
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"As a small business owner, I needed a moving company that could handle my office relocation with minimal disruption to my operations. Steady Moving Services delivered beyond my expectations. They worked after hours to accommodate my schedule and had everything set up in the new location exactly as planned. Their team was professional, courteous, and incredibly efficient. Thanks to them, we were back up and running with barely any downtime. I highly recommend their commercial moving services!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/clients/client3.jpg" alt="David Chen">
+                        <div class="author-info">
+                            <h4>David Chen</h4>
+                            <p>Pasadena, CA</p>
+                            <div class="review-date">May 15, 2025</div>
+                            <div class="review-source">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"I used Steady Moving's packing services before my move, and it was the best decision I made. Their team arrived with all the supplies and packed my entire three-bedroom house in just one day! They were incredibly organized, labeling everything clearly and packing items with care. When I unpacked at my new home, everything was intact, even my most delicate items. The peace of mind was worth every penny. I'll never move without their packing services again!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/movers/mover1.jpg" alt="Jennifer Taylor">
+                        <div class="author-info">
+                            <h4>Jennifer Taylor</h4>
+                            <p>Long Beach, CA</p>
+                            <div class="review-date">May 10, 2025</div>
+                            <div class="review-source">
+                                <i class="fab fa-google"></i> Google Reviews
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Steady Moving Services made my cross-town move incredibly smooth. Their team was punctual, professional, and handled all my belongings with exceptional care. They efficiently packed and transported everything, and the unpacking service was a lifesaver. Not a single item was damaged, and they even helped arrange furniture in my new home. Their attention to detail and customer service exceeded my expectations. I highly recommend their services to anyone planning a move!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/clients/client3.jpg" alt="Robert Williams">
+                        <div class="author-info">
+                            <h4>Robert Williams</h4>
+                            <p>Glendale, CA</p>
+                            <div class="review-date">April 30, 2025</div>
+                            <div class="review-source">
+                                <i class="fab fa-yelp"></i> Yelp
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="review-pagination">
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn">4</div>
+                <div class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Process -->
+    <section style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Review Process</h2>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <p>At Steady Moving Services, we value honest feedback from our clients. All reviews displayed on our website are from verified customers who have used our services. We do not edit or remove reviews unless they contain inappropriate content or personal information.</p>
+                <p style="margin-top: 1rem;">We encourage all our clients to share their experiences to help us improve our services and assist future customers in making informed decisions.</p>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Verified Customers</h3>
+                    <p>All reviews come from real customers who have used our services.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <h3>Unedited Feedback</h3>
+                    <p>We publish reviews as received, without editing the content.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Regular Updates</h3>
+                    <p>Our review section is updated weekly with new customer feedback.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background-color: var(--primary-yellow); padding: 4rem 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: var(--primary-black); margin-bottom: 1.5rem;">Ready to Experience Our 5-Star Service?</h2>
+            <p style="color: var(--primary-black); margin-bottom: 2rem; font-size: 1.2rem;">Join our growing list of satisfied customers!</p>
+            <a href="booking.html" class="btn btn-secondary cta-btn" style="background-color: var(--primary-black); color: var(--white); border-color: var(--primary-black);">Get a Free Quote Today!</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="Steady Moving Services Logo">
+                </div>
+                <p>Steady Moving Services provides professional, reliable, and affordable moving solutions in Los Angeles and surrounding areas.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-building"></i> Licensed and insured moving company</p>
+                <p><i class="fas fa-map-marker-alt"></i> Los Angeles County, Orange County</p>
+                <p><i class="fas fa-phone"></i> +1 (628) 946-6736</p>
+                <p><i class="fas fa-envelope"></i> steadymovingservices@gmail.com</p>
+                <p><i class="fas fa-language"></i> English</p>
+                <div class="social-links">
+                    <a href="https://m.yelp.com/biz/steady-moving-services-los-angeles" target="_blank"><i class="fab fa-yelp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for moving tips and special offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Steady Moving Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would filter the reviews
+                    // For this demo, we'll just show a message
+                    console.log('Filter applied: ' + this.textContent);
+                });
+            });
+            
+            // Pagination functionality
+            const pageButtons = document.querySelectorAll('.page-btn');
+            
+            pageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    pageButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would change the page
+                    // For this demo, we'll just show a message
+                    console.log('Page changed to: ' + this.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Move - Steady Moving Services</title>
+    <meta name="description" content="Request a quote or book your move with Steady Moving Services. Fill out our simple form to get started with your stress-free moving experience in Los Angeles.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Additional styles for booking form */
+        .form-control {
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group label span {
+            color: red;
+            margin-left: 0.2rem;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-control.error {
+            border-color: red;
+        }
+        
+        .success-message {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .inventory-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .inventory-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .inventory-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        
+        .inventory-item input[type="number"] {
+            width: 60px;
+            margin-left: 0.5rem;
+            padding: 0.3rem;
+        }
+        
+        .date-picker {
+            position: relative;
+        }
+        
+        .date-picker i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Steady Moving Services Logo">
+                <div class="logo-text">Steady <span>Moving</span></div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html" class="active">Booking</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Hero Section -->
+    <section class="hero" style="background-image: url('images/movers/mover3.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Book Your <span>Move</span></h1>
+            <p>Get a free quote and schedule your stress-free moving experience</p>
+        </div>
+    </section>
+
+    <!-- Booking Introduction -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Request a Free Quote</h2>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <p>Fill out the form below to request a free, no-obligation quote for your upcoming move. Our team will review your information and contact you within 24 hours to discuss your moving needs and provide a detailed estimate.</p>
+                <p style="margin-top: 1rem;"><strong>Need immediate assistance?</strong> Call us at <a href="tel:2135557890">(213) 555-7890</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section style="background-color: var(--light-gray); padding-bottom: 5rem;">
+        <div class="container">
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <div id="formErrors" style="color: red; margin-bottom: 1rem; display: none;"></div>
+                    
+                    <!-- Personal Information -->
+                    <h3 style="margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-yellow);">Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name<span>*</span></label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required>
+                            <div class="error-message">Please enter your full name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address<span>*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                            <div class="error-message">Please enter a valid email address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number<span>*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="(123) 456-7890" required>
+                            <div class="error-message">Please enter a valid phone number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredContact">Preferred Contact Method</label>
+                            <select id="preferredContact" name="preferredContact" class="form-control">
+                                <option value="email">Email</option>
+                                <option value="phone">Phone</option>
+                                <option value="text">Text Message</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Move Details -->
+                    <h3 style="margin: 2rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-yellow);">Move Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="moveDate">Preferred Move Date<span>*</span></label>
+                            <div class="date-picker">
+                                <input type="date" id="moveDate" name="moveDate" class="form-control" required>
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="error-message">Please select a move date</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="moveSize">Size of Move</label>
+                            <select id="moveSize" name="moveSize" class="form-control">
+                                <option value="studio">Studio Apartment</option>
+                                <option value="1bedroom">1 Bedroom Apartment</option>
+                                <option value="2bedroom">2 Bedroom Apartment/House</option>
+                                <option value="3bedroom">3 Bedroom House</option>
+                                <option value="4bedroom">4+ Bedroom House</option>
+                                <option value="office">Office/Commercial Space</option>
+                                <option value="other">Other (Please specify in notes)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="moveType">Type of Move<span>*</span></label>
+                            <select id="moveType" name="moveType" class="form-control" required>
+                                <option value="local">Local Move (Within Los Angeles area)</option>
+                                <option value="longDistance">Long Distance Move</option>
+                                <option value="commercial">Commercial/Office Move</option>
+                                <option value="specialtyItems">Specialty Items Only</option>
+                            </select>
+                            <div class="error-message">Please select a move type</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalServices">Additional Services Needed</label>
+                            <select id="additionalServices" name="additionalServices" class="form-control" multiple size="3">
+                                <option value="packing">Packing Services</option>
+                                <option value="unpacking">Unpacking Services</option>
+                                <option value="furniture">Furniture Assembly/Disassembly</option>
+                            </select>
+                            <small style="display: block; margin-top: 0.25rem; color: var(--dark-gray);">Hold Ctrl/Cmd to select multiple options</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Addresses -->
+                    <h3 style="margin: 2rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-yellow);">Addresses</h3>
+                    
+                    <div class="form-group">
+                        <label for="pickupAddress">Pickup Address<span>*</span></label>
+                        <input type="text" id="pickupAddress" name="pickupAddress" class="form-control" placeholder="Street Address" required>
+                        <div class="error-message">Please enter your pickup address</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="pickupCity" name="pickupCity" class="form-control" placeholder="City" required>
+                            <div class="error-message">Please enter the city</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="pickupState" name="pickupState" class="form-control" placeholder="State" required>
+                            <div class="error-message">Please enter the state</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="pickupZip" name="pickupZip" class="form-control" placeholder="ZIP Code" required>
+                            <div class="error-message">Please enter a valid ZIP code</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label for="deliveryAddress">Delivery Address<span>*</span></label>
+                        <input type="text" id="deliveryAddress" name="deliveryAddress" class="form-control" placeholder="Street Address" required>
+                        <div class="error-message">Please enter your delivery address</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="deliveryCity" name="deliveryCity" class="form-control" placeholder="City" required>
+                            <div class="error-message">Please enter the city</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="deliveryState" name="deliveryState" class="form-control" placeholder="State" required>
+                            <div class="error-message">Please enter the state</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="deliveryZip" name="deliveryZip" class="form-control" placeholder="ZIP Code" required>
+                            <div class="error-message">Please enter a valid ZIP code</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Inventory -->
+                    <h3 style="margin: 2rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-yellow);">Inventory</h3>
+                    <p>Please select the items you'll be moving to help us provide a more accurate quote:</p>
+                    
+                    <div class="inventory-items">
+                        <div class="inventory-item">
+                            <input type="checkbox" id="sofa" name="inventory" value="sofa">
+                            <label for="sofa">Sofa</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="loveseat" name="inventory" value="loveseat">
+                            <label for="loveseat">Loveseat</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="armchair" name="inventory" value="armchair">
+                            <label for="armchair">Armchair</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="diningTable" name="inventory" value="diningTable">
+                            <label for="diningTable">Dining Table</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="diningChair" name="inventory" value="diningChair">
+                            <label for="diningChair">Dining Chair</label>
+                            <input type="number" min="1" max="20" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="bed" name="inventory" value="bed">
+                            <label for="bed">Bed (any size)</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="dresser" name="inventory" value="dresser">
+                            <label for="dresser">Dresser</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="nightstand" name="inventory" value="nightstand">
+                            <label for="nightstand">Nightstand</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="desk" name="inventory" value="desk">
+                            <label for="desk">Desk</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="bookcase" name="inventory" value="bookcase">
+                            <label for="bookcase">Bookcase</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="tvStand" name="inventory" value="tvStand">
+                            <label for="tvStand">TV Stand</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="wardrobe" name="inventory" value="wardrobe">
+                            <label for="wardrobe">Wardrobe</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="appliance" name="inventory" value="appliance">
+                            <label for="appliance">Large Appliance</label>
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="boxes" name="inventory" value="boxes">
+                            <label for="boxes">Boxes (approx.)</label>
+                            <input type="number" min="1" max="100" value="10">
+                        </div>
+                        <div class="inventory-item">
+                            <input type="checkbox" id="piano" name="inventory" value="piano">
+                            <label for="piano">Piano</label>
+                            <input type="number" min="1" max="5" value="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label for="additionalItems">Additional Items or Special Requirements</label>
+                        <textarea id="additionalItems" name="additionalItems" class="form-control" rows="4" placeholder="Please list any additional items or special requirements for your move..."></textarea>
+                    </div>
+                    
+                    <!-- Submit Section -->
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <p style="margin-bottom: 1rem;"><small>By submitting this form, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small></p>
+                        <button type="submit" class="btn btn-primary cta-btn">Get a Free Quote Today!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Steady Moving Services</h2>
+            </div>
+            <div class="features-container">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fees or surprise charges. We provide clear, detailed quotes upfront.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Licensed & Insured</h3>
+                    <p>Your belongings are protected with our comprehensive insurance coverage.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>On-Time Service</h3>
+                    <p>We value your time and stick to the schedule we agree upon.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Professional Team</h3>
+                    <p>Our experienced, background-checked movers treat your belongings with care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Preview -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"The booking process was so easy, and the team was incredibly responsive. They answered all my questions and provided a detailed quote quickly. The move itself was just as smooth!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/clients/client3.jpg" alt="David Chen">
+                        <div class="author-info">
+                            <h4>David Chen</h4>
+                            <p>Pasadena, CA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="reviews.html" class="btn btn-primary">Read More Reviews</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>How soon will I receive my quote?</h3>
+                    <p>We typically respond to quote requests within 24 hours. For more urgent needs, please call us directly at (213) 555-7890.</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Is my quote binding?</h3>
+                    <p>Initial quotes are estimates based on the information provided. For a binding quote, we recommend scheduling an in-home assessment.</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>What if I need to change my moving date?</h3>
+                    <p>We understand plans can change. Contact us as soon as possible to reschedule, and we'll do our best to accommodate your new date.</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <h3>Do I need to be present during the move?</h3>
+                    <p>We recommend being present at both pickup and delivery locations, but we can make arrangements if that's not possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="Steady Moving Services Logo">
+                </div>
+                <p>Steady Moving Services provides professional, reliable, and affordable moving solutions in Los Angeles and surrounding areas.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-building"></i> Licensed and insured moving company</p>
+                <p><i class="fas fa-map-marker-alt"></i> Los Angeles County, Orange County</p>
+                <p><i class="fas fa-phone"></i> +1 (628) 946-6736</p>
+                <p><i class="fas fa-envelope"></i> steadymovingservices@gmail.com</p>
+                <p><i class="fas fa-language"></i> English</p>
+                <div class="social-links">
+                    <a href="https://m.yelp.com/biz/steady-moving-services-los-angeles" target="_blank"><i class="fab fa-yelp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for moving tips and special offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Steady Moving Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
